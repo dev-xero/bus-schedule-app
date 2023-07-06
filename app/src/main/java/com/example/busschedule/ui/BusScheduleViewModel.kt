@@ -20,11 +20,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.busschedule.App
+import com.example.busschedule.BusScheduleApp
 import com.example.busschedule.data.BusSchedule
 import com.example.busschedule.data.BusScheduleDao
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
 class BusScheduleViewModel(private var dao: BusScheduleDao): ViewModel() {
     fun getFullSchedule(): Flow<List<BusSchedule>> = dao.getAll()
@@ -34,7 +33,7 @@ class BusScheduleViewModel(private var dao: BusScheduleDao): ViewModel() {
     companion object {
         val factory : ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = (this[APPLICATION_KEY] as App)
+                val application = (this[APPLICATION_KEY] as BusScheduleApp)
                 BusScheduleViewModel(application.database.busScheduleDao())
             }
         }
