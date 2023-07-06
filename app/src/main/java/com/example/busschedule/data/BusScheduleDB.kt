@@ -1,9 +1,14 @@
 package com.example.busschedule.data
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+@Database(
+	entities = [BusSchedule::class],
+	version = 1
+)
 abstract class BusScheduleDB : RoomDatabase() {
 	abstract fun busScheduleDao(): BusScheduleDao
 
