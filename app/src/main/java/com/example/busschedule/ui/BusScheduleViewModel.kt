@@ -27,6 +27,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class BusScheduleViewModel(private var dao: BusScheduleDao): ViewModel() {
+    fun getFullSchedule(): Flow<List<BusSchedule>> = dao.getAll()
+
+    fun getScheduleFor(stopName: String): Flow<List<BusSchedule>> = dao.getByStopName(stopName)
+
     companion object {
         val factory : ViewModelProvider.Factory = viewModelFactory {
             initializer {
